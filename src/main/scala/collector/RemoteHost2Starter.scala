@@ -5,7 +5,7 @@ import akka.actor.ActorSystem
 /**
   * Created by juanma on 09/03/17.
   */
-object RemoteSystemStarter extends App {
+object RemoteHost2Starter extends App {
 
-  val system = ActorSystem("RemoteAgentSystem")
+  val system = ActorSystem("Host2AgentSystem")
 }

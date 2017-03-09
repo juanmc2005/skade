@@ -13,7 +13,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
   */
 abstract case class Agent(system: ActorRef) {
 
-  var currentRef: Option[ActorRef] = None
+  var location: Option[ActorRef] = None
 
   def setup(): Unit
   def beforeMove(): Unit
@@ -32,9 +32,10 @@ abstract case class Agent(system: ActorRef) {
       }
   }
 
-  def here(): ActorRef = currentRef.get
+  def here(): ActorRef = location.get
 }
 
 case class NewContainer(name: String)
+case class NewRemoteContainer(name: String, path: String)
 case class StartingAgent(agent: Agent)
 case class GetContainer(name: String)

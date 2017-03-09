@@ -1,18 +1,20 @@
 package core
 
-import akka.actor.{Actor, ActorRef}
+import akka.actor.{Actor, ActorRef, Props}
 
 /**
   * Created by juanma on 22/01/17.
   */
-class Container(system: ActorRef) extends Actor {
+class Container extends Actor {
 
   override def receive: Receive = {
     case newAgent: StartingAgent =>
-      newAgent.agent.currentRef = Some(self)
+      println(s"${self.path.name} received a new agent")
+      newAgent.agent.location = Some(self)
       newAgent.agent.setup()
     case agent: Agent =>
-      agent.currentRef = Some(self)
+      println(s"${self.path.name} received an agent")
+      agent.location = Some(self)
       agent.afterMove()
   }
 
